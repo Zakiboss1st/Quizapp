@@ -1,0 +1,102 @@
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  List<String> questions = [
+    "flutter was released in 2017",
+    "Maalinta fasaxa ah malmaha waa axad",
+    "Zaki boss is A developer Application"
+  ];
+  List<bool> chek = [true, false, true];
+  int questionIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Color(0xff003049),
+        body: Column(
+          children: [
+            Expanded(
+              flex: 6,
+              child: Center(
+                child: Text(
+                  questions[questionIndex],
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Row(children: [
+                Expanded(
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                    ),
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.green),
+                        ),
+                        onPressed: () {
+                          final iscorrect = chek[questionIndex];
+                          setState(() {
+                            questionIndex++;
+                            if (iscorrect == true) {
+                              print("Waa saxday");
+                            } else {
+                              print("waa khaladay");
+                            }
+                          });
+                        },
+                        child: Text(
+                          "True",
+                          style: TextStyle(color: Colors.white),
+                        )),
+                  ),
+                ),
+              ]),
+            ),
+            Expanded(
+              flex: 1,
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Container(
+                    margin: EdgeInsets.only(left: 16, right: 16, bottom: 40),
+                    child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.red),
+                        ),
+                        onPressed: () {
+                          final isincorrect = chek[questionIndex];
+                          setState(() {
+                            questionIndex++;
+                            if (isincorrect == false) {
+                              print("Waa saxday ");
+                            } else {
+                              print(" Waa khaladay");
+                            }
+                          });
+                        },
+                        child: Text(
+                          "False",
+                          style: TextStyle(color: Colors.white),
+                        )),
+                  )),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
